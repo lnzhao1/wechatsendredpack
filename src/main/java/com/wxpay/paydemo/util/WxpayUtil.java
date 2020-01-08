@@ -71,8 +71,10 @@ public class WxpayUtil {
             if (k.equals(WXPayConstants.FIELD_SIGN)) {
                 continue;
             }
-            if (data.get(k).trim().length() > 0) // 参数值为空，则不参与签名
+            // 参数值为空，则不参与签名
+            if (data.get(k).trim().length() > 0) {
                 sb.append(k).append("=").append(data.get(k).trim()).append("&");
+            }
         }
         sb.append("key=").append(key);
 
@@ -84,6 +86,7 @@ public class WxpayUtil {
             throw new Exception(String.format("Invalid sign_type: %s", signType));
         }
     }
+
     public static String sessionGenerator(String mobile) {
         return md5(mobile + UUID.randomUUID()).toLowerCase();
     }
@@ -108,8 +111,9 @@ public class WxpayUtil {
         String stmp;
         for (int n = 0; b!=null && n < b.length; n++) {
             stmp = Integer.toHexString(b[n] & 0XFF);
-            if (stmp.length() == 1)
+            if (stmp.length() == 1){
                 hs.append('0');
+            }
             hs.append(stmp);
         }
         return hs.toString().toLowerCase();
