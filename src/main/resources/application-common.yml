@@ -1,0 +1,32 @@
+server:
+#  tomcat:
+#    max-http-post-size: 102400000
+#    max-http-header-size: 102400000
+  port: 8081
+  undertow:
+    io-threads: 8
+    worker-threads: 768
+    direct-buffers: true
+    buffer-size: 1024
+spring:
+  servlet:
+    multipart:
+      enabled: true
+      max-file-size: 40MB
+      max-request-size: 100MB
+  profiles:
+      active: dev
+
+# wxpay properties
+wx-pay:
+  appid:
+  #商户号
+  mch_id:
+  #商户支付密钥
+  key:
+  #企业付款 url
+  send_url: https://api.mch.weixin.qq.com/mmpaymkttransfers/promotion/transfers
+  #发放普通红包 url
+#  send_url: https://api.mch.weixin.qq.com/mmpaymkttransfers/sendredpack
+  #证书位置
+  certificate_url:
